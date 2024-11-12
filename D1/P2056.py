@@ -1,28 +1,18 @@
 T = int(input())
 
 for t in range(T):
-    isDay = int(input())
+    isDay = input()
 
-    Day = isDay % 100
-    Month = (isDay//100) % 100
+    Year = int(isDay[:4])
+    Month = int(isDay[4:6])
+    Day = int(isDay[6:])
 
-    if (Day > 31):
-        print(-1)
-        continue
-    elif (Day == 30):
-        if Month not in [4, 6, 9, 11]:
-            print(-1)
-            continue
-    elif(Day == 28):
-        if(Month != 2):
-            print(-1)
-            continue
-    elif(Day < 28):
-        print(-1)
-        continue
+    days_in_month ={
+        1:31, 2: 28, 3:31, 4:30, 5:31, 6:30,
+        7:31, 8:31, 9:30, 10:31, 11:30, 12:31
+    }
 
-    if(Month > 12):
-        print(-1)
-        continue
-
-    print(f"#{t} {isDay}")
+    if Month < 1 or Month > 12 or Day < 1 or Day > days_in_month.get(Month, 0):
+        print(f"#{t+1} -1")
+    else:
+        print(f"#{t + 1} {isDay[:4]}/{isDay[4:6]}/{isDay[6:]}")
