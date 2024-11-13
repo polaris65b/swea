@@ -1,19 +1,21 @@
-def score_count(score):
-    tmp = (0,0)
-    score_map = set(score)
-    for i in score_map:
-        cnt = score.count(i)
-        if cnt > tmp[0]:
-            tmp = (cnt, i)
-    return tmp[1]
+def do_many_score(score):
+    count_score = 0
+    many_score = 0
+    set_score = set(score)
+    for i in set_score:
+        if score.count(i) > count_score:
+            count_score = score.count(i)
+            many_score = i
+        elif score.count(i) == count_score and i > many_score:
+            many_score = i
+    return many_score
 
 def main():
     t = int(input())
     for _ in range(t):
         case = int(input())
         score = list(map(int, input().split()))
-        m_score = score_count(score)
-        print(f"#{case} {m_score}")
+        print(f"#{case} {do_many_score(score)}")
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
