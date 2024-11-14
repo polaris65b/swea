@@ -1,10 +1,10 @@
-def generate_snail_matrix(n):
+def gen_snail_matrix(n):
     matrix = [[0]*n for _ in range(n)]
 
-    x, y = 0, 0
     num = 1
+    x, y = 0, 0
 
-    direction = [(0,1), (1,0), (0,-1), (-1,0)]
+    direction = [(0, 1), (1, 0), (0, -1), (-1,0)]
     direction_index = 0
 
     while num <= n*n:
@@ -24,15 +24,16 @@ def generate_snail_matrix(n):
 
     return matrix
 
-
 def main():
     t = int(input())
     for case in range(t):
         n = int(input())
+        snail_matrix = gen_snail_matrix(n)
         print(f"#{case + 1}")
-        snail_matrix = generate_snail_matrix(n)
         for row in snail_matrix:
-            print(" ".join(map(str, row)))
+            for num in row:
+                print(num, end = " ")
+            print()
 
 if __name__ == "__main__":
     main()
